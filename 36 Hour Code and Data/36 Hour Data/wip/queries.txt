@@ -1,0 +1,15 @@
+Count the number of unique machines per username (identifies shared authentication details)
+select c2, count(distinct(c1)) from 20151208.csv group by c1 order by 2 
+
+Count the number of unique usernames per campus
+select lower(c3), count(distinct(c2)) from 20151208.csv group by lower(c3)
+ - OR - 
+select lower(Campus), count(distinct(Username)) from 20151208.csv group by lower(Campus)
+
+
+Count the number of unique usernames per campus per building area 
+select lower(c3), c8, count(distinct(c2)) from 20151208.csv group by c8, lower(c3)
+
+Count the number of unique users at session connect hours (when the user initiated a wireless session) -- depends on breaking the datetime fields into date, hour, minute, and Day/Night.
+select ConnectDate, ConnectHour, ConnectDN, count(distinct(Username)) from 20151210_Rpt.csv group by ConnectDate, ConnectHour, ConnectDN order by ConnectDate, ConnectDN, ConnectHour
+
